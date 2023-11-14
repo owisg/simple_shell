@@ -8,7 +8,8 @@
 void _input(char **command, size_t *size)
 {
 ssize_t linesize;
-if ((linesize = getline(command, size, stdin)) == -1)
+linesize = getline(command, size, stdin);
+if (linesize == -1)
 {
 if (feof(stdin))
 {
