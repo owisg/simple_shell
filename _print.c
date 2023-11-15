@@ -6,11 +6,12 @@
  * @format: format string
  * Return: the number of characters printed
  */
+
 int _print(const char *format, ...)
 {
+char *str;
 int i = 0, count = 0;
 va_list args;
-char *str;
 va_start(args, format);
 while (format[i])
 {
@@ -22,26 +23,26 @@ count++;
 else if (format[i + 1])
 {
 i++;
-switch (format[i])
+if (format[i] == 'c')
 {
-case 'c':
 count++;
 _putchar(va_arg(args, int));
-break;
-case 's':
+}
+else if (format[i] == 's')
+{
 str = va_arg(args, char *);
-if (str == NULL)
-str = "(null)";
 while (*str)
+{
 count++;
 _putchar(*str);
 str++;
-break;
-default:
+}
+}
+else
+{
 count++;
 _putchar('%');
 _putchar(format[i]);
-break;
 }
 }
 i++;
